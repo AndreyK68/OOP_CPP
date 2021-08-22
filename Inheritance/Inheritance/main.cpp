@@ -46,7 +46,7 @@ public:
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
-	~Human()
+	virtual ~Human()
 	{
 		cout << "HDestructor:\t" << this << endl;
 	}
@@ -207,7 +207,8 @@ public:
 };
 
 //#define INHERITANCE
-//#define POLYMORPHISM
+#define POLYMORPHISM
+////#define FOR_SIZEOF
 
 void main()
 {
@@ -245,16 +246,25 @@ void main()
 		group[i]->print();
 		cout << delimiter << endl;
 	}
+	for (int i = 0; i < sizeof(group)/sizeof(Human*); i++)
+	{
+		delete group[i];
+	}
+
 #endif // POLYMORPHISM
 
+#ifdef FOR_SIZEOF
 #define DataType unsigned long long int
+
 	//typedef double DataType;	//Директива typedef создает псевдоним для существующего типа данных.
 	DataType arr[] = { 2,3,5,8,13,21,34 };
-	for (int i = 0; i < sizeof(arr)/sizeof(DataType); i++)
+	for (int i = 0; i < sizeof(arr) / sizeof(DataType); i++)
 	{
 		cout << arr[i] << "\t";
 	}
 	cout << endl;
+#endif // FOR_SIZEOF
+
 }
 
 //virtual type name(parameters) = 0;
